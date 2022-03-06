@@ -1,14 +1,29 @@
 import { FormControl, MenuItem, Select } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [countries, setCountries] = useState([
-    "usa",
-    "india",
-    "australia",
-    "japan",
-  ]);
+  const [countries, setCountries] = useState([]);
+
+  // https://disease.sh/v3/covid-19/countries
+
+  //useEffect---> Once the app component loads on the screen, then the useEffect function is executed. It will execute for the very first time when the component is rendered first time and also every time whenever the dependencies are changed.
+  useEffect(() => {
+    const getCountriesData = async () => {
+      await fetch("https://disease.sh/v3/covid-19/countries")
+        .then((response) => response.json())
+        .then((data) => {
+          const countries = data.map((country) => ({
+            name: country.country,  // United States
+            value: country.countryInfo.iso2,  //US
+          }));
+          setCountries(countries)
+
+        });
+
+    };
+    getCountriesData();
+  }, []);
 
   return (
     <div className="app">
@@ -16,15 +31,14 @@ function App() {
         <h1>COVID-19 TRACKER</h1>
         <FormControl className="app__dropdown">
           <Select variant="outlined" value="avs">
-            {countries.map((country) => (
-              <MenuItem value={country}>{country}</MenuItem>
-            ))}
+            {countries.map((country) => {
+              return <MenuItem value={country.value}>{country.name}</MenuItem>; //this is the ES6 syntax.
+            })}
 
-            {/* hard coded */}
-            {/* <MenuItem value="worldwide">worldwide</MenuItem>
-            <MenuItem value="worldwide">2</MenuItem>
-            <MenuItem value="worldwide">3</MenuItem>
-            <MenuItem value="worldwide">4</MenuItem> */}
+            {/* {countries.map(country =>( 
+                <MenuItem value={country}>{country}</MenuItem>
+              ) //this is also the ES6 syntax. Both works fine.
+            )} */}
           </Select>
         </FormControl>
       </div>
