@@ -31,6 +31,7 @@ function App() {
         <h1>COVID-19 TRACKER</h1>
         <FormControl className="app__dropdown">
           <Select variant="outlined" value="avs">
+          <MenuItem value="worldwide">worldwide</MenuItem>
             {countries.map((country) => {
               return <MenuItem value={country.value}>{country.name}</MenuItem>; //this is the ES6 syntax.
             })}
