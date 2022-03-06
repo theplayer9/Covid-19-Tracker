@@ -4,6 +4,7 @@ import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [country, setCountry] = useState("worldwide")
 
   // https://disease.sh/v3/covid-19/countries
 
@@ -30,7 +31,7 @@ function App() {
       <div className="app__header">
         <h1>COVID-19 TRACKER</h1>
         <FormControl className="app__dropdown">
-          <Select variant="outlined" value="avs">
+          <Select variant="outlined" value={country}>
           <MenuItem value="worldwide">worldwide</MenuItem>
             {countries.map((country) => {
               return <MenuItem value={country.value}>{country.name}</MenuItem>; //this is the ES6 syntax.
