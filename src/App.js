@@ -9,11 +9,15 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table"
+
+
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([])
 
   //  For default result on screen
   useEffect(() => {
@@ -40,7 +44,8 @@ function App() {
             name: country.country, // United States
             value: country.countryInfo.iso2, //US
           }));
-          setCountries(countries);
+          setCountries(countries); // this will return an object containing name and value of every country.
+          setTableData(data) //this will be the list of countries containing all the data that will be fetched from the api
         });
     };
     getCountriesData();
@@ -109,12 +114,14 @@ function App() {
         </div>
 
         <div>
-          <Map></Map>
+          <Map />
         </div>
       </div>
       <Card className="app__right">
         <CardContent>
-          <h2>Live cases by country </h2>
+          <h2>Live cases by country.... </h2>
+          <Table countries={tableData} />
+          <h2>Worldwide new cases </h2>
         </CardContent>
       </Card>
     </div>
