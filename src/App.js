@@ -10,6 +10,7 @@ import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table"
+import {sortData} from './util'
 
 
 
@@ -44,8 +45,9 @@ function App() {
             name: country.country, // United States
             value: country.countryInfo.iso2, //US
           }));
+          const sortdata= sortData(data)
           setCountries(countries); // this will return an object containing name and value of every country.
-          setTableData(data) //this will be the list of countries containing all the data that will be fetched from the api
+          setTableData(sortData) //this will be the list of countries containing all the data that will be fetched from the api
         });
     };
     getCountriesData();
