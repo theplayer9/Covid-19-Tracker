@@ -47,7 +47,7 @@ function App() {
           }));
           const sortdata= sortData(data)
           setCountries(countries); // this will return an object containing name and value of every country.
-          setTableData(sortData) //this will be the list of countries containing all the data that will be fetched from the api
+          setTableData(sortdata) //this will be the list of countries containing all the data that will be fetched from the api
         });
     };
     getCountriesData();

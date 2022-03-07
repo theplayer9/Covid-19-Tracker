@@ -13,4 +13,4 @@
 
 
 
- //this is not a component function. It's like a healper function.
+ //This is not a component function. It's like a healper function.
