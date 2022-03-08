@@ -11,6 +11,7 @@ import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table"
 import {sortData} from './util'
+import LineGraph from "./LineGraph";
 
 
 
@@ -124,6 +125,7 @@ function App() {
           <h2>Live cases by country.... </h2>
           <Table countries={tableData} />
           <h2>Worldwide new cases </h2>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
