@@ -37,7 +37,6 @@ const options = {
           display: false,
         },
         ticks: {
-
           callback: function (value, index, values) {
             return numeral(value).format("0a");
           },
@@ -54,7 +53,7 @@ const buildChartData = (data, casesType) => {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
-        y: data.cases[date] - lastDataPoint,
+        y: data[casesType][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
@@ -73,17 +72,16 @@ function Graph({ casesType }) {
           return response.json();
         })
         .then((data) => {
-            console.log(data)
-            console.log(casesType)
           let chartData = buildChartData(data, casesType);
           setData(chartData);
           console.log(chartData);
+          // buildChart(chartData);
         });
     };
 
     fetchData();
   }, [casesType]);
-
+  
   return (
     <div>
       {data?.length > 0 && (
