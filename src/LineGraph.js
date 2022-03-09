@@ -1,5 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
+const options = {
+  legend:{
+    display:false,
+  },
+  elements: {
+    point:{
+      radius:0,
+    },
+  },
+  maintainaAspectRatio: false,
+  tooltips:{
+    mode:"index",
+    intersect:false,
+    callbacks:{
+      label:function(tooltipItem,data){
+        return numeral ( tooltipItem.value).format("+0,0")
+      },
+    },
+  },
+}
+
+
 
 function LineGraph() {
   const [data, setData] = useState({});
