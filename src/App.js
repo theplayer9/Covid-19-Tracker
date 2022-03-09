@@ -11,7 +11,8 @@ import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table"
 import {sortData} from './util'
-import LineGraph from "./LineGraph";
+import Graph from './Graph'
+import { Line } from "react-chartjs-2";
 
 
 
@@ -90,7 +91,7 @@ function App() {
                 ); //this is the ES6 syntax.
               })}
 
-              {/* {countries.map(country =>( 
+              {/* {countries.map(country) =>( 
                 <MenuItem value={country}>{country}</MenuItem>
               ) //this is also the ES6 syntax. Both works fine.
             )} */}
@@ -125,7 +126,7 @@ function App() {
           <h2>Live cases by country.... </h2>
           <Table countries={tableData} />
           <h2>Worldwide new cases </h2>
-          <LineGraph />
+          <Graph casesType={"cases"} />
         </CardContent>
       </Card>
     </div>
