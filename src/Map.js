@@ -1,7 +1,7 @@
 import React from "react";
 import { Map as LeaflerMap, TileLayer } from "react-leaflet";
 import "./Map.css"
-function Map() {
+function Map({center,zoom}) {
   return (
     <div className="map">
       <LeaflerMap center={center} zoom={zoom}>

@@ -9,20 +9,19 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
-import Table from "./Table"
-import {sortData} from './util'
-import Graph from './Graph'
+import Table from "./Table";
+import { sortData } from "./util";
+import Graph from "./Graph";
 import { Line } from "react-chartjs-2";
-import "leaflet/dist/leaflet.css"
-
-
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
-  const [tableData, setTableData] = useState([])
-
+  const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80745, lng: -40.4796 });
+  const [mapZoom,setMapZoom] = useState(3);
   //  For default result on screen
   useEffect(() => {
     const url = "https://disease.sh/v3/covid-19/all";
@@ -48,9 +47,9 @@ function App() {
             name: country.country, // United States
             value: country.countryInfo.iso2, //US
           }));
-          const sortdata= sortData(data)
+          const sortdata = sortData(data);
           setCountries(countries); // this will return an object containing name and value of every country.
-          setTableData(sortdata) //this will be the list of countries containing all the data that will be fetched from the api
+          setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api
         });
     };
     getCountriesData();
@@ -119,7 +118,7 @@ function App() {
         </div>
 
         <div>
-          <Map />
+          <Map center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
       <Card className="app__right">
