@@ -13,6 +13,7 @@ import Table from "./Table"
 import {sortData} from './util'
 import Graph from './Graph'
 import { Line } from "react-chartjs-2";
+import "leaflet/dist/leaflet.css"
 
 
 
