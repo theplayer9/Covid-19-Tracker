@@ -21,8 +21,9 @@ function App() {
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80745, lng: -40.4796 });
-  const [mapZoom,setMapZoom] = useState(3);
-  const [mapCountries,setMapCountries] = useState([])
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
   //  For default result on screen
   useEffect(() => {
     const url = "https://disease.sh/v3/covid-19/all";
@@ -49,9 +50,9 @@ function App() {
             value: country.countryInfo.iso2, //US
           }));
           const sortdata = sortData(data);
-          setMapCountries(data)
+          setMapCountries(data); // this wil store the all the data 
           setCountries(countries); // this will return an object containing name and value of every country.
-          setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api
+          setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api in sorted form 
         });
     };
     getCountriesData();
@@ -70,10 +71,9 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data); //this will store all the data of that country.
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long])
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
         setMapZoom(4);
       });
-
 
     // https://disease.sh/v3/covid-19/countries
   };
@@ -123,15 +123,15 @@ function App() {
         </div>
 
         <div>
-          <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+          <Map countries={mapCountries} casesType={casesType} center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
       <Card className="app__right">
         <CardContent>
           <h2>Live cases by country.... </h2>
           <Table countries={tableData} />
-          <h2>Worldwide new cases </h2>
-          <Graph casesType={"cases"} />
+          <h2>Worldwide new cases {casesType} </h2>
+          <Graph casesType={casesType} />
         </CardContent>
       </Card>
     </div>
