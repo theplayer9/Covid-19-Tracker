@@ -57,7 +57,7 @@ function App() {
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
-    console.log("country code id: ", countryCode);
+    // console.log("country code id: ", countryCode);
     setCountry(countryCode);
     const url =
       countryCode === "worldwide"
@@ -68,7 +68,10 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data); //this will store all the data of that country.
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long])
+        setMapZoom(4);
       });
+
 
     // https://disease.sh/v3/covid-19/countries
   };
