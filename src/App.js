@@ -22,6 +22,7 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80745, lng: -40.4796 });
   const [mapZoom,setMapZoom] = useState(3);
+  const [mapCountries,setMapCountries] = useState([])
   //  For default result on screen
   useEffect(() => {
     const url = "https://disease.sh/v3/covid-19/all";
@@ -48,6 +49,7 @@ function App() {
             value: country.countryInfo.iso2, //US
           }));
           const sortdata = sortData(data);
+          setMapCountries(data)
           setCountries(countries); // this will return an object containing name and value of every country.
           setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api
         });
@@ -121,7 +123,7 @@ function App() {
         </div>
 
         <div>
-          <Map center={mapCenter} zoom={mapZoom} />
+          <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
       <Card className="app__right">
