@@ -10,10 +10,11 @@ import "./App.css";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
-import { sortData } from "./util";
+import { prettyPrintStat, sortData } from "./util";
 import Graph from "./Graph";
 import { Line } from "react-chartjs-2";
 import "leaflet/dist/leaflet.css";
+
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -107,18 +108,18 @@ function App() {
         <div className="app__stats">
           <InfoBox
             title="Corona Virus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
             title="Recovered"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.todayRecovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.todayRecovered)}
           />
           <InfoBox
             title="Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
 
