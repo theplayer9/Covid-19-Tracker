@@ -50,7 +50,7 @@ function App() {
             value: country.countryInfo.iso2, //US
           }));
           const sortdata = sortData(data);
-          setMapCountries(data); // this wil store the all the data 
+          setMapCountries(data); // this will store the all the data 
           setCountries(countries); // this will return an object containing name and value of every country.
           setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api in sorted form 
         });
