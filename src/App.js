@@ -15,7 +15,6 @@ import Graph from "./Graph";
 import { Line } from "react-chartjs-2";
 import "leaflet/dist/leaflet.css";
 
-
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
@@ -51,9 +50,9 @@ function App() {
             value: country.countryInfo.iso2, //US
           }));
           const sortdata = sortData(data);
-          setMapCountries(data); // this will store the all the data 
+          setMapCountries(data); // this will store the all the data
           setCountries(countries); // this will return an object containing name and value of every country.
-          setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api in sorted form 
+          setTableData(sortdata); //this will be the list of countries containing all the data that will be fetched from the api in sorted form
         });
     };
     getCountriesData();
@@ -107,16 +106,19 @@ function App() {
 
         <div className="app__stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
             title="Corona Virus Cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={prettyPrintStat(countryInfo.todayRecovered)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
@@ -124,7 +126,12 @@ function App() {
         </div>
 
         <div>
-          <Map countries={mapCountries} casesType={casesType} center={mapCenter} zoom={mapZoom} />
+          <Map
+            countries={mapCountries}
+            casesType={casesType}
+            center={mapCenter}
+            zoom={mapZoom}
+          />
         </div>
       </div>
       <Card className="app__right">
